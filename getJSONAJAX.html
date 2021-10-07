@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <meta charset="UTF-8">
+        <script src="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.js"></script>
+        <link type="text/css" rel="stylesheet" href="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest-core.css"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+        <title>Ajax</title>
+
+        <body>
+            <p></p>
+                <button id="clicca">Clicca JSON</button>
+                <button id="ajax">Clicca AJAX</button>
+            <script>
+                $(document).ready(function() {
+                    $("#clicca").click(function() {
+                        //$("p").load("prova.txt")              caricare contenuto dei file direttamente
+                        $.getJSON("prova.json",function(data){
+                            console.log(data); 
+                        })
+                    });
+                    $("#ajax").click(function() {
+                        $.ajax({
+                            url: "prova.json",
+                            dataType: "json",
+                            type: "get",
+                            success: function(response){
+                                console.log(response);
+                            },
+                            error: function(jqXHR, textStatus, errorThrown){
+                                console.log(textStatus,errorThrown);
+                            }
+                        })
+                    })
+                });
+            </script>
+        </body>        
+    </head>
+</html>
